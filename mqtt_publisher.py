@@ -8,10 +8,8 @@ def on_connect(client, userdata, rc):
     client.subscribe("testPepper")
 
 
-client = mqtt.Client()
+client = mqtt.Client(clean_session=False)
 client.on_connect = on_connect
-
-# client.connect("test.mosquitto.org" )
 client.connect("169.254.201.28")
 
 for i in range(100):

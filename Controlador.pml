@@ -78,6 +78,7 @@
         <File name="mqtt_publisher" src="mqtt_publisher.py" />
         <File name="Control Example" src="ControlExample/Control Example/Control Example.pml" />
         <File name="manifest" src="ControlExample/Control Example/manifest.xml" />
+        <File name="Controlador" src="Controlador.py" />
     </Resources>
     <Topics />
     <IgnoredPaths />
