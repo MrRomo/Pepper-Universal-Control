@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?><ChoregrapheProject xmlns="http://www.aldebaran-robotics.com/schema/choregraphe/project.xsd" xar_version="3"><Box name="root" id="-1" localization="8" tooltip="Root box of Choregraphe&apos;s behavior. Highest level possible." x="0" y="0"><bitmap>media/images/box/root.png</bitmap><script language="4"><content><![CDATA[]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" /><Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" /><Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" /><Timeline enable="0"><BehaviorLayer name="behavior_layer1"><BehaviorKeyframe name="keyframe1" index="1"><Diagram><Box name="Python Script" id="1" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="345" y="168"><bitmap>media/images/box/box-python-script.png</bitmap><script language="4"><content><![CDATA[import serial
+class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+    def onLoad(self):
+        self.ser = serial.Serial(self.getParameter("Port"))
+        self.ser.port = str(self.getParameter("Port"))
+        self.ser.baudrate = 9600
+        self.ser.stopbit = serial.STOPBITS_ONE
+        self.ser.parity = serial.PARITY_NONE
+        self.ser.bytesize = serial.EIGHTBITS
+        self.ser.timeout = 0
+        self.loop = True
+        self.red = False
+        self.blue = False
+    def onUnload(self):
+        pass
+    def onInput_onStart(self):
+        try:
+            self.ser.close()
+        except:
+            pass
+        try:
+            self.ser.open()
+            self.sendString("Serial port is now open!")
+            while self.loop:
+                character = self.ser.read(1)
+
+            if(character != ""):
+                self.sendString("Don't press that button again!")
+            if(self.red == True):
+                self.sendString("Red")
+                self.ser.write("r")
+                self.red = False
+            elif(self.blue == True):
+                self.sendString("Blue")
+                self.ser.write("b")
+                self.blue = False
+                self.ser.close()
+        except Exception, e:
+            self.sendString("We found an exception!")
+            self.loop = False
+            self.log("Exception: " + str(e))
+            self.ser.close()
+            self.onUnload()
+            self.onStopped()
+
+    def onInput_onStop(self):
+        self.onUnload() #it is recommended to reuse the clean-up as the box is stopped
+        self.onStopped() #activate the output of the box
+    def onInput_headTap(self):
+        self.loop = False
+    def onInput_leftHandTouch(self):
+        self.blue = True
+    def onInput_rightHandTouch(self):
+        self.red = True]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" /><Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" /><Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" /></Box><Link inputowner="1" indexofinput="2" outputowner="0" indexofoutput="2" /><Link inputowner="0" indexofinput="4" outputowner="1" indexofoutput="4" /></Diagram></BehaviorKeyframe></BehaviorLayer></Timeline></Box></ChoregrapheProject>
