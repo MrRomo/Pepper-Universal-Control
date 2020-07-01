@@ -36,7 +36,7 @@ direcction = ['FW','BW']
 
 
 broker_addres = "broker.hivemq.com"
-client = mqtt.Client('PC'.join(str(uuid.uuid4())))
+client = mqtt.Client('PC'.join(str(uuid.uuid4())), clean_session=False)
 client.connect(broker_addres)
 
 pygame.init()
@@ -143,6 +143,6 @@ while not hecho:
     pygame.display.flip()
  
     # Limitamos a 60 fotogramas por segundo.
-    reloj.tick(5)
+    reloj.tick(15)
      
 pygame.quit()
