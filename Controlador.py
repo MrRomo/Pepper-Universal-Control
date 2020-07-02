@@ -32,8 +32,10 @@ class TextPrint(object):
     def unindent(self):
         self.x -= 10
      
-direcction = ['FW','BW']
-
+direcction = ['fw','bw']
+head = ['h_up','h_dw','h_lf','h_rt','h_ct']
+position = ['std','sp1','sp2','sp3']
+gyro = ['g_lf','g_rt']
 
 broker_addres = "broker.hivemq.com"
 client = mqtt.Client('PC'.join(str(uuid.uuid4())), clean_session=False)

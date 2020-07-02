@@ -4,6 +4,7 @@
     <BehaviorDescriptions>
         <BehaviorDescription name="behavior" src="behavior_1" xar="behavior.xar" />
         <BehaviorDescription name="behavior" src="ControlExample/Control Example/behavior_1" xar="behavior.xar" />
+        <BehaviorDescription name="behavior" src="universal_control" xar="behavior.xar" />
     </BehaviorDescriptions>
     <Dialogs />
     <Resources>
@@ -79,6 +80,9 @@
         <File name="Control Example" src="ControlExample/Control Example/Control Example.pml" />
         <File name="manifest" src="ControlExample/Control Example/manifest.xml" />
         <File name="Controlador" src="Controlador.py" />
+        <File name="" src=".gitignore" />
+        <File name="LICENSE" src="LICENSE" />
+        <File name="README" src="README.md" />
     </Resources>
     <Topics />
     <IgnoredPaths />
