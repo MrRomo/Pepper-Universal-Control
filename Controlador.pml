@@ -83,6 +83,8 @@
         <File name="" src=".gitignore" />
         <File name="LICENSE" src="LICENSE" />
         <File name="README" src="README.md" />
+        <File name=".behavior.xar.76" src="universal_control/.behavior.xar.76.csp" />
+        <File name=".behavior.xar.7772" src="universal_control/.behavior.xar.7772.csp" />
     </Resources>
     <Topics />
     <IgnoredPaths />
